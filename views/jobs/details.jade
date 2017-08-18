@@ -1,0 +1,35 @@
+extends ../../layouts/default
+
+block head
+    title #{event.title}
+
+block body
+    div.row
+        div.col-sm-12
+            div.page-header
+                h1 #{event.title}
+                    small &nbsp; Posted by #{event.username}
+            ul.event-list.list-group
+                li.list-group-item
+                    strong Job Title: &nbsp
+                    | #{event.title}
+                li.list-group-item
+                    strong Details: &nbsp
+                    | #{event.description}
+                li.list-group-item
+                    strong Maxamum Salary: &nbsp
+                    | #{event.maxSalary}
+                li.list-group-item
+                    strong Minimum Salary: &nbsp
+                    | #{event.minSalary}
+                li.list-group-item
+                    strong Questions: &nbsp
+                    | #{event.name}
+                li.list-group-item
+                    strong Date: &nbsp
+                    | #{event.date}
+            p #{event.description}
+            p
+                i.fa.fa-arrow-circle-left
+                a(href='/jobs')  Go Back |
+                a(href='/jobs/bids/#{event._id}')  Bid

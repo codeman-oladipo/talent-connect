@@ -1,0 +1,20 @@
+extends ../../layouts/default
+
+block head
+ title Recieved Bids 
+
+block body
+ div.row
+  div.col-sm-8
+   div.page-header
+    h1 Recieved Bids
+   ul.events
+    each job, i in data
+     li
+      strong #{job.title}
+      &nbsp;&nbsp; 
+      i.fa.fa-pencil 
+      a(href='/bids/show/#{job._id}')  Bids
+  div.col-sm-4
+   div.page-header
+    h1 Sidebar
