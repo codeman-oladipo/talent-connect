@@ -2,8 +2,7 @@
 
 exports.port = process.env.PORT || 3000;
 exports.mongodb = {
-  //uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost:27017/recruit-io'
-  uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://motosa:motosa@ds115071.mlab.com:15071/recruiter-backup'
+  uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://process.env.username:process.env.pass@ds115071.mlab.com:15071/recruiter-backup'
 };
 exports.companyName = 'Eduonix';
 exports.projectName = 'ComEvents';
