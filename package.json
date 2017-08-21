@@ -1,12 +1,12 @@
 {
-  "name": "Drywall",
+  "name": "talent.connect",
   "version": "0.17.0",
   "private": true,
   "scripts": {
     "start": "grunt"
   },
-  "author": "Reza Akhavan <jedireza@gmail.com> (http://reza.akhavan.me/)",
-  "license": "MIT",
+  "author": "Banjy Oguntade<banji.oguntade@gmail.com>",
+  "license": "Open Source",
   "engines": {
     "node": ">=4.0.0"
   },
@@ -26,6 +26,7 @@
     "express-session": "1.x.x",
     "helmet": "1.x.x",
     "jade": "1.x.x",
+    "pug": "*",
     "method-override": "2.x.x",
     "mongoose": "4.x.x",
     "morgan": "1.x.x",

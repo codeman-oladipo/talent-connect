@@ -23,19 +23,24 @@ html
             li: a(href='/') Home
             li: a(href='/about/') About
             li: a(href='/jobs/') Jobs
+            if user.accountType == "client"
+               li: a(href='/bids/') Bids Recieved
             li: a(href='/signup/') Sign Up
             li: a(href='/contact/') Contact
           ul.nav.navbar-nav.navbar-right
             if user && user.username
-              li: a(href='/myjobs')
-               i.fa.fa-calendar
-               | My Jobs
-              li: a(href='/mybids')
-               i.fa.fa-calendar
-               | My Bids
-              li: a(href='/jobs/add')
-               i.fa.fa-plus
-               | Add Jobs
+              if user.accountType == "client"
+                  li: a(href='/myjobs')
+                   i.fa.fa-calendar
+                   | My Jobs
+              if user.accountType == "recruiter"
+                  li: a(href='/mybids')
+                   i.fa.fa-calendar
+                   | My Bids
+              if user.accountType == "client"
+                  li: a(href='/jobs/add')
+                   i.fa.fa-plus
+                   | Add Jobs
               li: a(href='#{user.defaultReturnUrl}')
                 i.fa.fa-user
                 |  #{user.username}

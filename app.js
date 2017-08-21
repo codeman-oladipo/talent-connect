@@ -81,6 +81,7 @@ app.use(function(req, res, next) {
   res.locals.user = {};
   res.locals.user.defaultReturnUrl = req.user && req.user.defaultReturnUrl();
   res.locals.user.username = req.user && req.user.username;
+  res.locals.user.accountType = req.user && req.user.accountType;
   next();
 });
 

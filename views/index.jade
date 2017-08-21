@@ -8,7 +8,10 @@ block neck
 
 block body
   div.jumbotron
-    h1 Community Events
+    h1 Talent Connect
+    if user && user.username
+      div.greetings
+        | Welcome, #{user.username}
     p.lead
       | Sign up with us and list your public and private events
     div
