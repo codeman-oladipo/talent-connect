@@ -20,8 +20,8 @@ exports.smtp = {
     address: process.env.SMTP_FROM_ADDRESS || 'banji.oguntade@gmail.com'
   },
   credentials: {
-    user: process.env.SMTP_USERNAME || 'muyiwa47',
-    password: process.env.SMTP_PASSWORD || 'Motoser_47',
+    user: process.env.SMTP_USERNAME || 'test',
+    password: process.env.SMTP_PASSWORD || 'test',
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
     ssl: true
   }
