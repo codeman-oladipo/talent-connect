@@ -11,10 +11,10 @@ block body
         form(method='post', action='/jobs/update/#{event._id}')
           div.form-group
             label Job Title:
-            input.form-control(type='text', name='title' value='#{event.title}' required)
+            input.form-control(type='text', name='title' value='#{event.title}')
           div.form-group
             label Job Description & Qualifications:
-            textarea.form-control(type='text', name='description' required) #{event.description}
+            textarea.form-control(type='text', name='description') #{event.description}
           div.form-group
             label Questions:
             input.form-control(type='text', name='name' value='#{event.name}')

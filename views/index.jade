@@ -1,7 +1,7 @@
 extends ../layouts/default
 
 block head
-  title Drywall is Running
+  title Talent Connect
 
 block neck
   link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
@@ -13,7 +13,7 @@ block body
       div.greetings
         | Welcome, #{user.username}
     p.lead
-      | Sign up with us and list your public and private events
+      | Sign up with us and list your job openings
     div
       a.btn.btn-primary.btn-lg(href='/signup/') Create an Account
       | &nbsp;or&nbsp;

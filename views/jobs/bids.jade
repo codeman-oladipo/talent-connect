@@ -10,17 +10,17 @@ block body
         h1 Bid for Job
         form(method='post', action='/jobs/bids')
           div.form-group
+            label Job ID:
+            input.form-control(type='text', name='jobID' value='#{event._id}' readonly)
+          div.form-group
+            label Questions:
+            p #{event.name}
+          div.form-group
             label Posted By:
-            | #{event._id}
+            input.form-control(type='text', name='username' value='#{event.username}' readonly) 
           div.form-group
             label Anwsers:
-            textarea.form-control(type='text', name='date' value="#{moment().subtract(10, 'days').calendar()}" readonly)
-          div.form-group
-            label Posted By:
-            | #{event.username}
-          div.form-group
-            label Anwsers:
-            textarea.form-control(type='text', name='anwsers' value='')
+            textarea.form-control(type='text', name='anwsers' value='') 
           div.form-group
             label Date:
             input.form-control(type='text', name='date' value="#{moment().subtract(10, 'days').calendar()}" readonly)

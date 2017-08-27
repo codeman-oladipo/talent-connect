@@ -2,9 +2,14 @@
 
 exports.find = function(req, res, next){
   req.query.name = req.query.title ? req.query.title : '';
-  req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 5;
+  req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 10;
   req.query.page = req.query.page ? parseInt(req.query.page, null) : 1;
-  req.query.sort = req.query.sort ? req.query.sort : '_id';
+  req.query.sort = req.query.sort ? req.query.sort : {"_id" : -1};
+    
+// if (!req.body.username) {
+//    res.location('/');
+//    res.redirect('/');
+// }
 
   var filters = {};
   if (req.query.username) {
@@ -158,7 +163,6 @@ exports.update = function(req, res, next){
       name: req.body.name,
       description: req.body.description,
       title: req.body.title,
-      date: req.body.date,
       maxSalary: req.body.maxSalary,
       minSalary: req.body.minSalary,
       username: req.user.username
@@ -240,9 +244,6 @@ exports.postBids = function(req, res, next){
 //////////////////////////////////////////////////////////////////////////
 
 
-
-
-
 exports.delete = function(req, res, next){
   console.log(33);
   var workflow = req.app.utility.workflow(req, res);
@@ -256,7 +257,7 @@ exports.delete = function(req, res, next){
       if(err){
         return workflow.emit('exception', err);
       }
-        req.flash('success', 'Event Deleted!');
+        req.flash('success', 'Job Deleted!');
         res.location('/jobs/');
         res.redirect('/jobs/');
     });
@@ -264,4 +265,3 @@ exports.delete = function(req, res, next){
   workflow.emit('validate');
   
 };
-

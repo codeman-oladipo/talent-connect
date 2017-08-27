@@ -5,7 +5,7 @@ exports.find = function(req, res, next){
   req.query.jobID = req.query.jobID ? req.query.jobID : '';
   req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 20;
   req.query.page = req.query.page ? parseInt(req.query.page, null) : 1;
-  req.query.sort = req.query.sort ? req.query.sort : '_id';
+  req.query.sort = req.query.sort ? req.query.sort : {"_id" : -1};
 
   var filters = {};
   if (req.query.username) {
@@ -70,6 +70,8 @@ exports.read = function(req, res, next){
     }
   });
 };
+
+
 
 
 //exports.read = function(req, res, next){

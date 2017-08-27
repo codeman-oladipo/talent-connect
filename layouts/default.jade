@@ -6,6 +6,7 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/layouts/core.min.css?#{cacheBreaker}')
     link(rel='stylesheet', href='/layouts/style.css')
+    link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
     block neck
   body
     div.navbar.navbar-default.navbar-fixed-top
@@ -65,10 +66,15 @@ html
 
     div.ajax-spinner
       img(src='/media/ajax-pulse.gif', alt='Loading')
+      
+    div#dialog(title='Confirmation Required')
+      | Are you sure about this?
 
     //if lte IE 9
       script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
     script(src='/layouts/core.min.js?#{cacheBreaker}')
+    script(src='https://code.jquery.com/jquery-1.12.4.js')
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
     script(src='/layouts/main.js')
 
     block feet

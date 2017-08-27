@@ -3,3 +3,9 @@
 	margin: 20px 0;
 	line-height: 1.9em;
 }
+body {
+    font-family: candara;
+}
+.navbar-default i {
+    padding-right: 5px
+}

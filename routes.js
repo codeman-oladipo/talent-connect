@@ -48,18 +48,25 @@ exports = module.exports = function(app, passport) {
   // post jobs routes
   app.get('/jobs/', require('./views/jobs/index').find);
   app.get('/users/', require('./views/jobs/index').find);
-  app.get('/jobs/bids/:id', require('./views/jobs/index').bids);
-  app.post('/jobs/bids/', require('./views/jobs/index').postBids);
+
+  app.post('/jobs/bids/', require('./views/jobs/index').postBids); // posting a bids from recruiter
   app.get('/jobs/show/:id', require('./views/jobs/index').read);
   app.get('/jobs/add', require('./views/jobs/index').add);
   app.post('/jobs/', require('./views/jobs/index').create);
   app.get('/myjobs', require('./views/myjobs/index').find);
-  app.get('/bids', require('./views/bids/index').find);
-  app.get('/bids/show/:id', require('./views/bids/index').read);
-  app.get('/mybids', require('./views/mybids/index').find);
   app.get('/jobs/edit/:id', require('./views/jobs/index').edit);
   app.post('/jobs/update/:id', require('./views/jobs/index').update);
   app.delete('/jobs/delete/:id', require('./views/jobs/index').delete);
+
+  app.get('/jobs/bids/:id', require('./views/jobs/index').bids); // biding for jobs
+  //app.get('/bids/edit/:id', require('./views/mybids/index').edit);
+  //app.post('/bids/update/:id', require('./views/bids/index').update);
+  app.get('/bids', require('./views/bids/index').find); // bids for clients
+  app.get('/bids/show/:id', require('./views/bids/index').read); // bids for individual jobs for clients
+  app.get('/mybids', require('./views/mybids/index').find); // my bids for recruiters
+
+  //app.post('/jobs/update/:id', require('./views/jobs/index').update);
+  //app.delete('/jobs/delete/:id', require('./views/jobs/index').delete);
 	
   //sign up
   app.get('/signup/', require('./views/signup/index').init);

@@ -11,12 +11,12 @@ block feet
 
 block body
   div.row
-    div.col-sm-6
+    div.col-sm-12
       div.page-header
-        h1 Welcome, #{event.username}
-        p #{event.accountType}
+        h1 Welcome, 
+
         - var language = event.accountType
         if language == "client"
-            p Awesome
+            h3 Account Type : #{event.accountType}
         else
-            p Not awesome
+            h3 Account Type : #{event.accountType}

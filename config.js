@@ -4,9 +4,9 @@ exports.port = process.env.PORT || 5000;
 exports.mongodb = {
   uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://motosa:motosa@ds115071.mlab.com:15071/recruiter-backup'
 };
-exports.companyName = 'Eduonix';
-exports.projectName = 'ComEvents';
-exports.systemEmail = 'techguyinfo@gmail.com';
+exports.companyName = 'Talent Connect';
+exports.projectName = 'Talent Connect';
+exports.systemEmail = 'banji.oguntade@gmail.com';
 exports.cryptoKey = 'k3yb0ardc4t';
 exports.loginAttempts = {
   forIp: 50,
@@ -17,11 +17,11 @@ exports.requireAccountVerification = false;
 exports.smtp = {
   from: {
     name: process.env.SMTP_FROM_NAME || exports.projectName +' recruit-io',
-    address: process.env.SMTP_FROM_ADDRESS || 'yourmail'
+    address: process.env.SMTP_FROM_ADDRESS || 'banji.oguntade@gmail.com'
   },
   credentials: {
-    user: process.env.SMTP_USERNAME || 'YOUREMAIL',
-    password: process.env.SMTP_PASSWORD || 'YOURPASSWORD',
+    user: process.env.SMTP_USERNAME || 'muyiwa47',
+    password: process.env.SMTP_PASSWORD || 'Motoser_47',
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
     ssl: true
   }
