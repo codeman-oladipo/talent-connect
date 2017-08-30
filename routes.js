@@ -66,7 +66,7 @@ exports = module.exports = function(app, passport) {
   app.get('/mybids', require('./views/mybids/index').find); // my bids for recruiters
 
   //app.post('/jobs/update/:id', require('./views/jobs/index').update);
-  //app.delete('/jobs/delete/:id', require('./views/jobs/index').delete);
+  app.delete('/bids/delete/:id', require('./views/bids/index').delete);
 	
   //sign up
   app.get('/signup/', require('./views/signup/index').init);

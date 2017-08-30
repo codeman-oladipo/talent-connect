@@ -9,3 +9,23 @@ body {
 .navbar-default i {
     padding-right: 5px
 }
+
+#messages li {
+   list-style-type: none;
+   background-color: #0377cc;
+   color: white;
+   padding :10px;
+}
+
+body {
+    background-image: url("../media/bg.jpg");
+    background-repeat: no-repeat;
+}
+
+.container {
+    background-color : white;
+}
+
+.footer {
+ 
+}

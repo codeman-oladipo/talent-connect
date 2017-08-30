@@ -23,7 +23,7 @@ block body
             textarea.form-control(type='text', name='anwsers' value='') 
           div.form-group
             label Date:
-            input.form-control(type='text', name='date' value="#{moment().subtract(10, 'days').calendar()}" readonly)
+            input.form-control(type='text', name='date' value="#{moment().format('L')}" readonly)
           div.form-group
             label Percentage Salary:
             input.form-control(type='text', name='percentSalary' value='')

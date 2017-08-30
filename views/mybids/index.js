@@ -4,12 +4,20 @@ exports.find = function(req, res, next){
  req.query.username = req.query.username ? req.query.username : '';
   req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 20;
   req.query.page = req.query.page ? parseInt(req.query.page, null) : 1;
-  req.query.sort = req.query.sort ? req.query.sort : '_id';
+  req.query.sort = req.query.sort ? req.query.sort : {"_id" : -1};
+ 
+     if (!req.isAuthenticated()) {
+        req.flash('error', "You are not logged in");
+        res.location('/jobs');
+        res.redirect('/jobs');
+      }
     
-if (!req.body.username) {
-    res.location('/');
-    res.redirect('/');
-}
+        
+      if (req.user.accountType == 'client') {
+        req.flash('error', "Sign in as a recruiter");
+        res.location('/jobs');
+        res.redirect('/jobs');
+       } 
 
   var filters = {username: req.user.username};
   if (req.query.username) {
@@ -18,7 +26,7 @@ if (!req.body.username) {
 
   req.app.db.models.Bid.pagedFind({
     filters: filters,
-    keys: 'username jobID anwsers',
+    keys: 'username jobID anwsers total',
     limit: req.query.limit,
     page: req.query.page,
     sort: req.query.sort

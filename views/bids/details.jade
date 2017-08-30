@@ -12,7 +12,8 @@ block body
     each event, i in data
      li.list-group-item
       strong Username : #{event.username} <br>
-      strong Date : #{event.date} <br>
+      -var newdate = moment(event.date).format("MM-DD-YYYY")
+      strong Date : #{newdate} <br>
       strong Anwsers : #{event.anwsers} <br>
       strong Total : #{event.total}
       &nbsp;&nbsp; 

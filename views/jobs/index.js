@@ -6,11 +6,6 @@ exports.find = function(req, res, next){
   req.query.page = req.query.page ? parseInt(req.query.page, null) : 1;
   req.query.sort = req.query.sort ? req.query.sort : {"_id" : -1};
     
-// if (!req.body.username) {
-//    res.location('/');
-//    res.redirect('/');
-// }
-
   var filters = {};
   if (req.query.username) {
     filters.username = new RegExp('^.*?'+ req.query.username +'.*$', 'i');
@@ -36,35 +31,7 @@ exports.find = function(req, res, next){
       results.filters = req.query;
       res.render('jobs/index', {data: results.data, pageCount: results.pages});
     }
-  });
-    
-    
-
-//  req.app.db.models.Job.paginate({}, { page: req.query.page, limit: req.query.limit }, function(err, users) {
-// 
-//    if (err) return next(err);
-// 
-//    res.format({
-//      html: function() {
-//        res.render('users', {
-//          users: users.docs,
-//          pageCount: users.pages,
-//          itemCount: users.limit,
-//          pages: paginate.getArrayPages(req)(3, users.pages, req.query.page)
-//        });
-//      },
-//      json: function() {
-//        // inspired by Stripe's API response for list objects 
-//        res.json({
-//          object: 'list',
-//          has_more: paginate.hasNextPages(req)(users.pages),
-//          data: users.docs
-//        });
-//      }
-//    });
-//  });
-    
-    
+  }); 
 };
 
 
@@ -88,6 +55,13 @@ exports.add = function(req, res){
         res.location('/jobs');
         res.redirect('/jobs');
   }
+    
+ if (req.user.accountType == 'recruiter') {
+    req.flash('error', "Sign in as a client");
+        res.location('/jobs');
+        res.redirect('/jobs');
+  } 
+    
   res.render('jobs/add');
 };
 
@@ -122,7 +96,7 @@ exports.create = function(req, res, next){
       }
 
       workflow.outcome.record = event;
-        req.flash('success', 'Event Added!');
+        req.flash('success', 'Job Added!');
         res.location('/jobs');
         res.redirect('/jobs');
     });
@@ -132,6 +106,19 @@ exports.create = function(req, res, next){
 };
 
 exports.edit = function(req, res, next){
+  
+      if (!req.isAuthenticated()) {
+        req.flash('error', "You are not logged in");
+        res.location('/jobs');
+        res.redirect('/jobs');
+      }
+    
+     if (req.user.accountType == 'recruiter') {
+        req.flash('error', "Sign in as a client");
+        res.location('/jobs');
+        res.redirect('/jobs');
+    } 
+
   req.app.db.models.Job.findById(req.params.id).exec(function(err, event){
     if(err){
       return next(err);
@@ -174,7 +161,7 @@ exports.update = function(req, res, next){
       }
 
       workflow.outcome.record = event;
-        req.flash('success', 'Event Updated!');
+        req.flash('success', 'Job Updated!');
         res.location('/jobs/show/'+req.params.id);
         res.redirect('/jobs/show/'+req.params.id);
     });
@@ -184,6 +171,13 @@ exports.update = function(req, res, next){
 };
 
 exports.bids = function(req, res, next){
+      
+     if (!req.isAuthenticated()) {
+        req.flash('error', "You are not logged in");
+        res.location('/jobs');
+        res.redirect('/jobs');
+      }
+    
   req.app.db.models.Job.findById(req.params.id).exec(function(err, event){
     if(err){
       return next(err);
@@ -206,7 +200,7 @@ exports.postBids = function(req, res, next){
 
   workflow.on('validate', function() {
     if (!req.body.anwsers) {
-      workflow.outcome.errors.push('Please enter a anwsers.');
+      workflow.outcome.errors.push("Please don't leave the anwser field blank");
       return workflow.emit('response');
     }
 
@@ -232,9 +226,9 @@ exports.postBids = function(req, res, next){
       }
 
       workflow.outcome.record = event;
-        req.flash('success', 'Event Added!');
-        res.location('/');
-        res.redirect('/');
+        req.flash('success', 'Bid Added!');
+        res.location('/mybids');
+        res.redirect('/mybids');
     });
   });
   workflow.emit('validate');
@@ -245,6 +239,19 @@ exports.postBids = function(req, res, next){
 
 
 exports.delete = function(req, res, next){
+  
+      if (!req.isAuthenticated()) {
+        req.flash('error', "You are not logged in");
+        res.location('/jobs');
+        res.redirect('/jobs');
+      }
+    
+     if (req.user.accountType == 'recruiter') {
+        req.flash('error', "Sign in as a client");
+        res.location('/jobs');
+        res.redirect('/jobs');
+     } 
+
   console.log(33);
   var workflow = req.app.utility.workflow(req, res);
 

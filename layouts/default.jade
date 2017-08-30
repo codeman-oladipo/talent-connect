@@ -7,6 +7,7 @@ html
     link(rel='stylesheet', href='/layouts/core.min.css?#{cacheBreaker}')
     link(rel='stylesheet', href='/layouts/style.css')
     link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
+    link(rel="stylesheet", href="/layouts/alertify.css", id="alertifyCSS")
     block neck
   body
     div.navbar.navbar-default.navbar-fixed-top
@@ -26,7 +27,10 @@ html
             li: a(href='/jobs/') Jobs
             if user.accountType == "client"
                li: a(href='/bids/') Bids Recieved
-            li: a(href='/signup/') Sign Up
+            if !(user.username)
+               li: a(href='/signup/') Sign Up
+            if user && user.username
+               li: a(href='/logout/') Sign Out
             li: a(href='/contact/') Contact
           ul.nav.navbar-nav.navbar-right
             if user && user.username
@@ -67,14 +71,14 @@ html
     div.ajax-spinner
       img(src='/media/ajax-pulse.gif', alt='Loading')
       
-    div#dialog(title='Confirmation Required')
-      | Are you sure about this?
 
     //if lte IE 9
       script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
-    script(src='/layouts/core.min.js?#{cacheBreaker}')
     script(src='https://code.jquery.com/jquery-1.12.4.js')
     script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+    script(src='/layouts/core.min.js?#{cacheBreaker}')
+    script(src='/layouts/alertify.js') 
     script(src='/layouts/main.js')
+   
 
     block feet
