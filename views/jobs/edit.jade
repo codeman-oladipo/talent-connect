@@ -17,7 +17,7 @@ block body
             textarea.form-control(type='text', name='description' required) #{event.description}
           div.form-group
             label Questions:
-            input.form-control(type='text', name='name' value='#{event.name}')
+            textarea.form-control(type='text', name='name') #{event.name}
           div.form-group
             label Minimum Salary:
             input.form-control(type='text', name='maxSalary' value='#{event.maxSalary}')

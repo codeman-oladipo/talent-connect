@@ -92,6 +92,7 @@ exports.create = function(req, res, next){
 
     req.app.db.models.Job.create(fieldsToSet, function(err, event){
       if(err){
+        req.flash('Ouch!!!', 'Something went wrong!');
         return workflow.emit('exception', err);
       }
 

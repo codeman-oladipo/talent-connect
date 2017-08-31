@@ -3,7 +3,7 @@
 exports = module.exports = function(app, mongoose) {
   var jobSchema = new mongoose.Schema({
     pivot: { type: String, default: '' },
-    name: { type: String,required:true},
+    name: { type: String},
     description: {type: String},
     title: {type: String},
     date: {type: Date},
