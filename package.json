@@ -3,7 +3,7 @@
   "version": "0.17.0",
   "private": true,
   "scripts": {
-    "postinstall": "grunt default",
+    "postinstall": "grunt build",
     "start": "grunt"
   },
   "author": "Banjy Oguntade<banji.oguntade@gmail.com>",
