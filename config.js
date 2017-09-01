@@ -2,7 +2,7 @@
 
 exports.port = process.env.PORT || 5000;
 exports.mongodb = {
-  uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://*:*@ds115071.mlab.com:15071/recruiter-backup'
+  uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || process.env.MONGOLAB_AMBER_URI || 'mongodb://motosa:motosa@ds115071.mlab.com:15071/recruiter-backup'
 };
 exports.companyName = 'Talent Connect';
 exports.projectName = 'Talent Connect';
