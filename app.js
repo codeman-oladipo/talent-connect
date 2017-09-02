@@ -1,6 +1,7 @@
 'use strict';
 
 //dependencies
+const nodemailer = require('nodemailer');
 var config = require('./config'),
     express = require('express'),
 	cons = require('consolidate'),

@@ -127,33 +127,33 @@ exports.signup = function(req, res){
           return workflow.emit('exception', err);
         }
 
-        workflow.emit('sendWelcomeEmail');
+        //workflow.emit('sendWelcomeEmail');
       });
     });
   });
 
-  workflow.on('sendWelcomeEmail', function() {
-    req.app.utility.sendmail(req, res, {
-      from: req.app.config.smtp.from.name +' <'+ req.app.config.smtp.from.address +'>',
-      to: req.body.email,
-      subject: 'Your '+ req.app.config.projectName +' Account',
-      textPath: 'signup/email-text',
-      htmlPath: 'signup/email-html',
-      locals: {
-        username: req.body.username,
-        email: req.body.email,
-        loginURL: req.protocol +'://'+ req.headers.host +'/login/',
-        projectName: req.app.config.projectName
-      },
-      success: function(message) {
-        workflow.emit('logUserIn');
-      },
-      error: function(err) {
-        console.log('Error Sending Welcome Email: '+ err);
-        workflow.emit('logUserIn');
-      }
-    });
-  });
+//  workflow.on('sendWelcomeEmail', function() {
+//    req.app.utility.sendmail(req, res, {
+//      from: req.app.config.smtp.from.name +' <'+ req.app.config.smtp.from.address +'>',
+//      to: req.body.email,
+//      subject: 'Your '+ req.app.config.projectName +' Account',
+//      textPath: 'signup/email-text',
+//      htmlPath: 'signup/email-html',
+//      locals: {
+//        username: req.body.username,
+//        email: req.body.email,
+//        loginURL: req.protocol +'://'+ req.headers.host +'/login/',
+//        projectName: req.app.config.projectName
+//      },
+//      success: function(message) {
+//        workflow.emit('logUserIn');
+//      },
+//      error: function(err) {
+//        console.log('Error Sending Welcome Email: '+ err);
+//        workflow.emit('logUserIn');
+//      }
+//    });
+//  });
 
   workflow.on('logUserIn', function() {
     req._passport.instance.authenticate('local', function(err, user, info) {
@@ -433,33 +433,33 @@ exports.signupSocial = function(req, res){
           return workflow.emit('exception', err);
         }
 
-        workflow.emit('sendWelcomeEmail');
+        //workflow.emit('sendWelcomeEmail');
       });
     });
   });
 
-  workflow.on('sendWelcomeEmail', function() {
-    req.app.utility.sendmail(req, res, {
-      from: req.app.config.smtp.from.name +' <'+ req.app.config.smtp.from.address +'>',
-      to: req.body.email,
-      subject: 'Your '+ req.app.config.projectName +' Account',
-      textPath: 'signup/email-text',
-      htmlPath: 'signup/email-html',
-      locals: {
-        username: workflow.user.username,
-        email: req.body.email,
-        loginURL: req.protocol +'://'+ req.headers.host +'/login/',
-        projectName: req.app.config.projectName
-      },
-      success: function(message) {
-        workflow.emit('logUserIn');
-      },
-      error: function(err) {
-        console.log('Error Sending Welcome Email: '+ err);
-        workflow.emit('logUserIn');
-      }
-    });
-  });
+//  workflow.on('sendWelcomeEmail', function() {
+//    req.app.utility.sendmail(req, res, {
+//      from: req.app.config.smtp.from.name +' <'+ req.app.config.smtp.from.address +'>',
+//      to: req.body.email,
+//      subject: 'Your '+ req.app.config.projectName +' Account',
+//      textPath: 'signup/email-text',
+//      htmlPath: 'signup/email-html',
+//      locals: {
+//        username: workflow.user.username,
+//        email: req.body.email,
+//        loginURL: req.protocol +'://'+ req.headers.host +'/login/',
+//        projectName: req.app.config.projectName
+//      },
+//      success: function(message) {
+//        workflow.emit('logUserIn');
+//      },
+//      error: function(err) {
+//        console.log('Error Sending Welcome Email: '+ err);
+//        workflow.emit('logUserIn');
+//      }
+//    });
+//  });
 
   workflow.on('logUserIn', function() {
     req.login(workflow.user, function(err) {

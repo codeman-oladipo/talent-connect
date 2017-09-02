@@ -24,7 +24,7 @@ exports.sendMessage = function(req, res){
       return workflow.emit('response');
     }
 
-    workflow.emit('sendEmail');
+    //workflow.emit('sendEmail');
   });
 
   workflow.on('sendEmail', function() {
