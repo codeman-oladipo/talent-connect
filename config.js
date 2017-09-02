@@ -2,7 +2,7 @@
 
 exports.port = process.env.PORT || 5000;
 exports.mongodb = {
-  uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_AMBER_URI 
+  uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_AMBER_URI || 'mongodb://motosa:motosa@ds115071.mlab.com:15071/recruiter-backup'
 };
 exports.companyName = 'Talent Connect';
 exports.projectName = 'Talent Connect';
@@ -15,14 +15,10 @@ exports.loginAttempts = {
 };
 exports.requireAccountVerification = false;
 // create reusable transporter object using the default SMTP transport
-exports.transport = nodemailer.createTransport({
-  host: "smtp.mailtrap.io",
-  port: 2525,
-  auth: {
-    user: "540d5304d701e3",
-    pass: "7db9fbee74f669"
-  }
-});
+
+
+
+
 //exports.smtp = {
 //  from: {
 //    name: process.env.SMTP_FROM_NAME || exports.projectName +' recruit-io',

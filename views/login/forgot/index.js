@@ -60,6 +60,8 @@ exports.send = function(req, res, next){
 
   workflow.on('sendEmail', function(token, user) {
       
+    
+      
     var mailOptions = {
         from: '"Talent Connect" <foo@blurdybloop.com>', // sender address
         to: 'user.email, muyiwa47@gmail.com', // list of receivers
@@ -68,7 +70,7 @@ exports.send = function(req, res, next){
         html: '<b>Hello world?</b>' // html body
     };
       
-       req.app.config.transport.sendMail(mailOptions, (error, info) => {
+       req.app.config.transport.sendMail(mailOptions, function (error, info) {
         if (error) {
             req.flash('error : ', error);
             //return console.log(error);
@@ -102,7 +104,7 @@ exports.send = function(req, res, next){
 //        workflow.emit('response');
 //      }
 //    });
-//  });
+  });
 
   workflow.emit('validate');
 };

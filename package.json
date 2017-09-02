@@ -38,6 +38,7 @@
     "moment": "*",
     "mongoose": "4.x.x",
     "morgan": "1.x.x",
+    "nodemailer": "^4.1.0",
     "passport": "0.3.x",
     "passport-facebook": "2.x.x",
     "passport-github": "1.x.x",
@@ -49,8 +50,7 @@
     "prompt": "*",
     "pug": "*",
     "serve-static": "1.10.x",
-    "underscore": "1.x.x",
-    "nodemailer": "*"
+    "underscore": "1.x.x"
   },
   "devDependencies": {
     "bootstrap": "3.x.x",
