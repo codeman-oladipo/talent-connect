@@ -14,19 +14,15 @@ exports.loginAttempts = {
   logExpiration: '20m'
 };
 exports.requireAccountVerification = false;
-exports.transporter = nodemailer.createTransport({
-   from: {
-    name: process.env.SMTP_FROM_NAME || exports.projectName +' recruit-io',
-    address: process.env.SMTP_FROM_ADDRESS || 'd60fbc3f76-e7652e@inbox.mailtrap.io'
-  },
-  credentials: {
-    host: "smtp.mailtrap.io",
-    port: 2525,
+// create reusable transporter object using the default SMTP transport
+exports.transport = nodemailer.createTransport({
+  host: "smtp.mailtrap.io",
+  port: 2525,
+  auth: {
     user: "540d5304d701e3",
-    password: "7db9fbee74f669"
+    pass: "7db9fbee74f669"
   }
 });
-
 //exports.smtp = {
 //  from: {
 //    name: process.env.SMTP_FROM_NAME || exports.projectName +' recruit-io',

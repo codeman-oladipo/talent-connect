@@ -61,14 +61,14 @@ exports.send = function(req, res, next){
   workflow.on('sendEmail', function(token, user) {
       
     var mailOptions = {
-        from: '"Talent Connect 👻" <foo@blurdybloop.com>', // sender address
+        from: '"Talent Connect" <foo@blurdybloop.com>', // sender address
         to: 'user.email, muyiwa47@gmail.com', // list of receivers
         subject: 'Hello ✔', // Subject line
         text: 'Hello world? - talent Connect in the house', // plain text body
         html: '<b>Hello world?</b>' // html body
     };
       
-       transporter.sendMail(mailOptions, (error, info) => {
+       req.app.config.transport.sendMail(mailOptions, (error, info) => {
         if (error) {
             req.flash('error : ', error);
             //return console.log(error);
