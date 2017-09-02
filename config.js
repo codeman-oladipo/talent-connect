@@ -2,7 +2,7 @@
 
 exports.port = process.env.PORT || 5000;
 exports.mongodb = {
-  uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || process.env.MONGOLAB_AMBER_URI || 'mongodb://motosa:motosa@ds115071.mlab.com:15071/recruiter-backup'
+  uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_AMBER_URI 
 };
 exports.companyName = 'Talent Connect';
 exports.projectName = 'Talent Connect';
@@ -20,9 +20,9 @@ exports.smtp = {
     address: process.env.SMTP_FROM_ADDRESS || 'd60fbc3f76-e7652e@inbox.mailtrap.io'
   },
   credentials: {
-    user: process.env.SMTP_USERNAME || '540d5304d701e3',
-    password: process.env.SMTP_PASSWORD || '7db9fbee74f669',
-    host: process.env.SMTP_HOST || 'smtp.mailtrap.io',
+    user: process.env.SMTP_USERNAME,
+    password: process.env.SMTP_PASSWORD,
+    host: process.env.SMTP_HOST,
     ssl: true
   }
 };
