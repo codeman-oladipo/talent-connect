@@ -64,24 +64,16 @@ exports.send = function(req, res, next){
         username: user.username,
         resetLink: req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'/',
         projectName: req.app.config.projectName
-      }  
+      };
       
-//    var renderHtml = function(callback) {
-//    res.render('login/forgot/email-html', locals, function(err, html) {
-//      if (err) {
-//        callback(err, null);
-//      }
-//      else {
-//        return callback(null, 'done');
-//      }
-//    });
-//  };
+    var renderHtml = res.render('login/forgot/email-html', locals);
+
 //    var resetLink = '<a href='+req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'>Reset Password</a>';
     var helper = require('sendgrid').mail;
     var from_email = new helper.Email('test@example.com');
     var to_email = new helper.Email(user.email);
     var subject = 'Reset your '+ req.app.config.projectName +' password';
-    var content = new helper.Content('text/html', res.render('login/forgot/email-html', locals));
+    var content = new helper.Content('text/html', renderHtml);
     var mail = new helper.Mail(from_email, subject, to_email, content);
      
     var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
