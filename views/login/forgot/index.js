@@ -67,7 +67,7 @@ exports.send = function(req, res, next){
 //      }
 //      
 //    var htmlContent = res.render('email-html', message);
-    var resetLink = '<a href='+req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'/''</a>';
+    var resetLink = '<a href='+req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'</a>';
     var helper = require('sendgrid').mail;
     var from_email = new helper.Email('test@example.com');
     var to_email = new helper.Email(user.email);
