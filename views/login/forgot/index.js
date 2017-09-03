@@ -59,11 +59,11 @@ exports.send = function(req, res, next){
   });
 
   workflow.on('sendEmail', function(token, user) {
-    //var feedback = {};
+    //var message = {};
     var helper = require('sendgrid').mail;
     var from_email = new helper.Email('test@example.com');
-    var to_email = new helper.Email('muyiwa47@gmail.com');
-    var subject = 'Hello World from the SendGrid Node.js Library!';
+    var to_email = new helper.Email(user.email);
+    var subject = 'Reset your '+ req.app.config.projectName +' password';
     var content = new helper.Content('text/plain', 'Hello, Email!');
     var mail = new helper.Mail(from_email, subject, to_email, content);
 
@@ -76,9 +76,9 @@ exports.send = function(req, res, next){
 
 sg.API(request, function(error, response) {
   workflow.emit('response');
-  workflow.emit(response.statusCode);
-  workflow.emit(response.body);
-  workflow.emit(response.headers);
+//  workflow.emit(response.statusCode);
+//  workflow.emit(response.body);
+//  workflow.emit(response.headers);
 });      
       
       
