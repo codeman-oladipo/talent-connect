@@ -33,12 +33,6 @@ app.locals.moment = require('moment');
 //setup the web server
 app.server = http.createServer(app);
 
-//email setup
-//app.transport = nodemailer.createTransport({host: "smtp.mailtrap.io", port: 2525,  
-//        auth: { user: "540d5304d701e3", pass: "7db9fbee74f669" }
-//      });
-
-
 //setup mongoose
 app.db = mongoose.createConnection(config.mongodb.uri);
 app.db.on('error', console.error.bind(console, 'mongoose connection error: '));
