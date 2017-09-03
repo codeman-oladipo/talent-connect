@@ -16,21 +16,18 @@ exports.loginAttempts = {
 exports.requireAccountVerification = false;
 // create reusable transporter object using the default SMTP transport
 
-
-
-
-//exports.smtp = {
-//  from: {
-//    name: process.env.SMTP_FROM_NAME || exports.projectName +' recruit-io',
-//    address: process.env.SMTP_FROM_ADDRESS || 'd60fbc3f76-e7652e@inbox.mailtrap.io'
-//  },
-//  credentials: {
-//    user: process.env.SMTP_USERNAME,
-//    password: process.env.SMTP_PASSWORD,
-//    host: process.env.SMTP_HOST,
-//    ssl: true
-//  }
-//};
+exports.smtp = {
+  from: {
+    name: process.env.SMTP_FROM_NAME || exports.projectName +' recruit-io',
+    address: process.env.SMTP_FROM_ADDRESS || 'd60fbc3f76-e7652e@inbox.mailtrap.io'
+  },
+  credentials: {
+    user: process.env.SMTP_USERNAME,
+    password: process.env.SMTP_PASSWORD,
+    host: process.env.SMTP_HOST,
+    ssl: true
+  }
+};
 exports.oauth = {
   twitter: {
     key: process.env.TWITTER_OAUTH_KEY || '',
