@@ -50,7 +50,8 @@
     "prompt": "*",
     "pug": "*",
     "serve-static": "1.10.x",
-    "underscore": "1.x.x"
+    "underscore": "1.x.x",
+    "sendgrid": "^4.2.0"
   },
   "devDependencies": {
     "bootstrap": "3.x.x",
