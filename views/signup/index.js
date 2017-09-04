@@ -127,12 +127,42 @@ exports.signup = function(req, res){
           return workflow.emit('exception', err);
         }
 
-        //workflow.emit('sendWelcomeEmail');
+        workflow.emit('sendWelcomeEmail');
       });
     });
   });
 
-//  workflow.on('sendWelcomeEmail', function() {
+  workflow.on('sendWelcomeEmail', function() {
+    var username = req.body.username;
+    var email = req.body.email;
+    var loginURL = req.protocol +'://'+ req.headers.host +'/login/';
+    var projectName = req.app.config.projectName;
+    var welcomeMessage = '<h3>Welcome to </h3><p>Thanks for signing up. As requested, your account has been created. Here are your login credentials:</p><table border="1" cellpadding="5" cellspacing="0"> <tr> <td>Username:</td><td>' + username + '</td></tr><tr><td>Email:</td><td>'+ email +'</td></tr><tr><td>Login Here:</td><td>' + loginURL + '</td></tr></table><p>Thanks,<br/>'+ projectName +'</p>';
+    var helper = require('sendgrid').mail;
+    var from_email = new helper.Email('talent@connect.com');
+    var to_email = new helper.Email(email);
+    var subject = 'Your '+ req.app.config.projectName +' Account';
+    var content = new helper.Content('text/html', welcomeMessage);
+    var mail = new helper.Mail(from_email, subject, to_email, content);
+     
+    var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+    var request = sg.emptyRequest({
+      method: 'POST',
+      path: '/v3/mail/send',
+      body: mail.toJSON(),
+  });
+
+    sg.API(request, function(error, response) {
+      if (error) {
+        console.log('Error Sending Welcome Email: '+ error);
+        workflow.emit('logUserIn');
+      } else {
+        workflow.emit('logUserIn'); 
+      }
+    });      
+      
+      
+      
 //    req.app.utility.sendmail(req, res, {
 //      from: req.app.config.smtp.from.name +' <'+ req.app.config.smtp.from.address +'>',
 //      to: req.body.email,
@@ -153,7 +183,7 @@ exports.signup = function(req, res){
 //        workflow.emit('logUserIn');
 //      }
 //    });
-//  });
+ });
 
   workflow.on('logUserIn', function() {
     req._passport.instance.authenticate('local', function(err, user, info) {
