@@ -60,20 +60,20 @@ exports.send = function(req, res, next){
 
   workflow.on('sendEmail', function(token, user) {
 
-    var locals = {
-        username: user.username,
-        resetLink: req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'/',
-        projectName: req.app.config.projectName
-      };
-      
-    var renderHtml = res.render('login/forgot/email-html', locals);
+//    var locals = {
+//        username: user.username,
+//        resetLink: req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'/', 
+//        projectName: req.app.config.projectName
+//      };
+//      
+//    var renderHtml = req.render('login/forgot/email-html', locals);
 
-//    var resetLink = '<a href='+req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'>Reset Password</a>';
+    var resetLink = '<a href='+req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'>Reset Password</a>';
     var helper = require('sendgrid').mail;
     var from_email = new helper.Email('test@example.com');
     var to_email = new helper.Email(user.email);
     var subject = 'Reset your '+ req.app.config.projectName +' password';
-    var content = new helper.Content('text/html', renderHtml);
+    var content = new helper.Content('text/html', resetLink);
     var mail = new helper.Mail(from_email, subject, to_email, content);
      
     var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
@@ -84,7 +84,13 @@ exports.send = function(req, res, next){
   });
 
 sg.API(request, function(error, response) {
-  workflow.emit('response');
+  if (error) {
+    workflow.outcome.errors.push('Error Sending: '+ error);
+    workflow.emit('response');
+  } else {
+    workflow.emit('response');  
+  }
+
 //      success: function(message) {
 //        workflow.emit('response');
 //      },
