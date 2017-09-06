@@ -67,13 +67,14 @@ exports.send = function(req, res, next){
 //      };
 //      
 //    var renderHtml = req.render('login/forgot/email-html', locals);
+    var resetLink = '<p><a href='+req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'/'+'>Reset Password</a></p>';
+    var renderHtml = "<h3>Forgot your password?</h3><p>To reset your password, click on the link below (or copy and paste the URL into your browser):</p>"+ resetLink;
 
-    var resetLink = '<a href='+req.protocol +'://'+ req.headers.host +'/login/reset/'+ user.email +'/'+ token +'>Reset Password</a>';
     var helper = require('sendgrid').mail;
-    var from_email = new helper.Email('test@example.com');
+    var from_email = new helper.Email('talent@connect.com');
     var to_email = new helper.Email(user.email);
     var subject = 'Reset your '+ req.app.config.projectName +' password';
-    var content = new helper.Content('text/html', resetLink);
+    var content = new helper.Content('text/html', renderHtml);
     var mail = new helper.Mail(from_email, subject, to_email, content);
      
     var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
