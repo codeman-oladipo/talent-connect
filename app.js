@@ -14,7 +14,6 @@ var config = require('./config'),
     path = require('path'),
     passport = require('passport'),
     mongoose = require('mongoose'),
-    nodemailer = require('nodemailer'),
     helmet = require('helmet');
     //confirm = require('confirm-dialog'),
     //dialogs = require('dialogs');

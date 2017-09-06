@@ -1,7 +1,7 @@
 'use strict';
 
 exports.init = function(req, res){
- res.render('account/index');
+ res.render('index');
 };
 
 // exports.init = function(req, res, next){

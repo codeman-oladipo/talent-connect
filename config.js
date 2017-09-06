@@ -2,11 +2,11 @@
 
 exports.port = process.env.PORT || 5000;
 exports.mongodb = {
-  uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_AMBER_URI;
+  uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_AMBER_URI
 };
 exports.companyName = 'Talent Connect';
 exports.projectName = 'Talent Connect';
-exports.systemEmail = 'banji.oguntade@gmail.com';
+exports.systemEmail = 'talent@connect.com';
 exports.cryptoKey = 'k3yb0ardc4t';
 exports.loginAttempts = {
   forIp: 50,
